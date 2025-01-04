@@ -1,8 +1,5 @@
-# Ensemble CLI
 
-## About
 
-Ensemble CLI is a powerful command-line interface for the Ensemble protocol. It allows developers to interact with the Ensemble API - build, configure and execute automated workflows. More details about Ensemble can be found at [ensemble.codes](https://ensemble.codes) and in the [documentation](https://docs.ensemble.codes).
 
 ## Setup
 
@@ -18,7 +15,7 @@ npm install
 cp .env.sample .env
 ```
 
-1. Connect to the Ensemble API on api.ensemble.codes or [run the engine locally](https://github.com/ensemble-codes/ensemble-engine). Update the `BASE_API_URL` in the `.env` file with the URL to the engine API.
+1. Connect to the Ensemble API on api.ensemble.codes or [run the engine locally]. Update the `BASE_API_URL` in the `.env` file with the URL to the engine API.
 
 2. Acquire the JWT token for the API and set it in the `.env` file.
 
@@ -87,14 +84,14 @@ Workflows can use local or external wallets, in this case we will create a local
 We can create a wallet with the following command:
 
 ```bash
-./ensemble wallets create
+./wallets create
 WORKFLOW_WALLET= #put here the received wallet address 
 ```
 
 The transfer wallet also needs a receiver address, we can use any wallet address for this. For this tutorial we will create a new wallet with Ensemble CLI:
 
 ```bash
-./ensemble wallets create
+./wallets create
 RECEIVER_ADDRESS= #put here the received wallet address 
 ```
 
@@ -109,7 +106,7 @@ TOKEN_ADDRESS=0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238
 Now to finish the workflow configuration, we need to create a workflow instance. Workflow instance is the workflow adapted to user's use case. This is the command to create a workflow instance:
 
 ```bash
-./ensemble instances create $WORKFLOW_ID  -p "{\"WORKFLOW_WALLET\": \"$WORKFLOW_WALLET\", \"RECEIVER_ADDRESS\": \"$RECEIVER_ADDRESS\", \"TOKEN_ADDRESS\": \"$TOKEN_ADDRESS\", \"PERIODIC_TRANSFER_AMOUNT\": \"100000\", \"WORKFLOW_NETWORK\": \"sepolia\"}"
+./instances create $WORKFLOW_ID  -p "{\"WORKFLOW_WALLET\": \"$WORKFLOW_WALLET\", \"RECEIVER_ADDRESS\": \"$RECEIVER_ADDRESS\", \"TOKEN_ADDRESS\": \"$TOKEN_ADDRESS\", \"PERIODIC_TRANSFER_AMOUNT\": \"100000\", \"WORKFLOW_NETWORK\": \"sepolia\"}"
 WORKFLOW_INSTANCE_ID= #store here the received workflow instance id
 ```
 
@@ -118,7 +115,7 @@ WORKFLOW_INSTANCE_ID= #store here the received workflow instance id
 Now if you use run the service locally, you need to upload the ABIs used by the workflow.
 
 ```bash
- ./ensemble abi upload erc20.abi  ./abis/erc20.abi.json
+ ./abi upload erc20.abi  ./abis/erc20.abi.json
 ```
 
 ### Start the workflow
@@ -128,18 +125,17 @@ For workflow to function properly, we need Sepolia ETH and USDC. For this exampl
 After we acquire the funds, we can start the workflow instance:
 
 ``` bash
-./ensemble instances start $WORKFLOW_INSTANCE_ID
+./instances start $WORKFLOW_INSTANCE_ID
 ```
 
 Validate the instance status:
 
 ```bash
-./ensemble instances status running
+./instances status running
 ``` 
 
 ## More Examples
 
-Read our manuals to get more examples and cheatsheets about working with Ensemble workflows.
+Read our manuals to get more examples and cheatsheets about working with workflows.
 
-- [DCA](./manuals/dca.md)
-- [Transfer](./manuals/periodic_transfer.md)
+
