@@ -1,0 +1,20 @@
+- name: scheduled_transfer
+  version: 0.0.1
+  wallet: $WORKFLOW_WALLET
+  steps:
+    - name: transfer
+      network: $WORKFLOW_NETWORK
+      contract: Token
+      method: transfer
+      arguments:
+        - to: $RECEIVER_ADDRESS
+        - amount: $PERIODIC_TRANSFER_AMOUNT
+      trigger:
+          name: daily_schedule
+          type: periodic
+          interval: minute
+  contracts:
+    - name: Token
+      address: $TOKEN_ADDRESS
+      abi: erc20.abi
+      network: $WORKFLOW_NETWORK
